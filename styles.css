@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+body {
+  background: rgb(26, 42, 51);
+  width: 100%;
+  height: 900px;
+  margin: 0 auto;
+}
+
+.tic {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.cell {
+  width: 140px;
+  height: 140px;
+  border-radius: 15px;
+
+  box-shadow: inset 0px -8px 0px 0px rgb(16, 33, 42);
+  /* Semi Dark Navy */
+  background: rgb(31, 54, 65);
+  font-size: 70px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.o img {
+  margin-left: 38px;
+}
+
+.x img {
+  margin-left: 37.03px;
+}
+
+table {
+  border-spacing: 20px;
+}
+
+.tic__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 139px;
+}
+.reset {
+  border-radius: 10px;
+  width: 52px;
+  height: 52px;
+  box-shadow: inset 0px -4px 0px 0px rgb(107, 137, 151);
+  /* Silver */
+  background: rgb(168, 191, 201);
+  border: 0;
+  cursor: pointer;
+}
+
+.x-img {
+  width: 30.49px;
+  height: 30.49px;
+  margin-top: 10px;
+}
+
+.o-img {
+  width: 31.74px;
+  height: 31.74px;
+  margin-left: 9px;
+  margin-right: 85px;
+  margin-top: 10px;
+}
+
+.turn {
+  margin-right: 108px;
+
+  border-radius: 10px;
+
+  box-shadow: inset 0px -4px 0px 0px rgb(16, 33, 42);
+  /* Semi Dark Navy */
+  background: rgb(31, 54, 65);
+  width: 140px;
+  height: 52px;
+
+  color: rgb(168, 191, 201);
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.results {
+  width: 459px;
+  margin: 0 auto;
+  display: flex;
+}
+.ties {
+  width: 140px;
+  height: 72px;
+  border-radius: 15px;
+
+  /* Silver */
+  background: rgb(168, 191, 201);
+
+  /* Body */
+  color: rgb(26, 42, 51);
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.88px;
+  text-align: center;
+  margin-right: 19px;
+}
+
+.win-X {
+  width: 140px;
+  height: 72px;
+  border-radius: 15px;
+
+  /* Light Blue */
+  background: rgb(49, 195, 189);
+  margin-right: 19px;
+}
+
+.win-O {
+  width: 140px;
+  height: 72px;
+
+  border-radius: 15px;
+
+  /* Light Yellow */
+  background: rgb(242, 177, 55);
+}
+
+.win-X span {
+  color: rgb(26, 42, 51);
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.88px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.winner__popup {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 266px;
+
+  top: 330px;
+  /* Semi Dark Navy */
+  background: rgb(31, 54, 65);
+}
+.winner__popup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winner__popup-text {
+  /* Heading (Extra Small) */
+  color: rgb(168, 191, 201);
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 45px;
+}
+
+.winner__popup-win {
+  /* Heading (Large) */
+  color: rgb(242, 177, 55);
+  font-family: "Outfit", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 2.5px;
+  text-align: left;
+  text-transform: uppercase;
+  margin-top: 23px;
+}
+
+.winner__popup-quit {
+  width: 76px;
+  height: 52px;
+  border-radius: 10px;
+
+  box-shadow: inset 0px -4px 0px 0px rgb(107, 137, 151);
+  /* Silver */
+  background: rgb(168, 191, 201);
+  /* Heading (Extra Small) */
+  color: rgb(26, 42, 51);
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+}
+
+.winner__popup-quit span {
+}
+
+.winner__popup-next {
+  width: 146px;
+  height: 52px;
+  border-radius: 10px;
+
+  box-shadow: inset 0px -4px 0px 0px rgb(204, 139, 19);
+  /* Light Yellow */
+  background: rgb(242, 177, 55);
+
+  color: rgb(26, 42, 51);
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+
+.winner__popup-btns {
+  display: flex;
+  margin-top: 31px;
+}
+
+.turn span {
+  margin-top: 15px;
+}

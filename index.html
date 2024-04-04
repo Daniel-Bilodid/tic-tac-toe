@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="winner__popup">
+      <div class="winner__popup-wrapper">
+        <div class="winner__popup-text">PLAYER 1 WINS!</div>
+        <div class="winner__popup-win">Takes the round</div>
+        <div class="winner__popup-btns">
+          <button class="winner__popup-quit"><span>QUIT</span></button>
+          <button class="winner__popup-next"><span>NEXT ROUND</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tic__tac">
+      <div class="tic__buttons">
+        <img class="x-img" src="./images/icon-x.svg" alt="x" />
+        <img class="o-img" src="./images/icon-o.svg" alt="o" />
+        <div class="turn">
+          <span>X TURN</span>
+        </div>
+        <button class="reset">
+          <img src="./images/icon-restart.svg" alt="restart" />
+        </button>
+      </div>
+
+      <div class="tic"></div>
+      <div class="results">
+        <div class="result"></div>
+
+        <div class="win-X">
+          <span>X</span>
+          <div class="winner__x"></div>
+        </div>
+        <div class="ties">
+          <div class="draw__result">TIES</div>
+          <div class="draw"></div>
+        </div>
+        <div class="win-O">
+          O
+          <div class="winner__o"></div>
+        </div>
+      </div>
+
+      <button class="cpu">With CPU</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
