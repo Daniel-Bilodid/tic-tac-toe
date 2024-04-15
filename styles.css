@@ -208,6 +208,8 @@ table {
   text-align: left;
   text-transform: uppercase;
   margin-top: 23px;
+  display: flex;
+  flex-direction: row;
 }
 
 .winner__popup-quit {
@@ -265,7 +267,8 @@ table {
 }
 
 .winner__popup-win span {
-  margin-top: -40px;
+  margin-left: 25px;
+  margin-top: 8px;
 }
 
 .winner__x {
@@ -528,4 +531,16 @@ table {
   text-transform: uppercase;
   border: 0;
   cursor: pointer;
+}
+
+.tie {
+  color: rgb(168, 191, 201);
+}
+
+.winner__popup-x {
+  color: rgb(49, 195, 189);
+}
+
+.winner__popup-o {
+  color: rgb(242, 177, 55);
 }
