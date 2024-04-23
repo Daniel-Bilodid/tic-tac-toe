@@ -83,6 +83,8 @@ let gameScreen = document.querySelector(".tic__tac");
 let startBtns = document.querySelectorAll(".tic__player-btn button");
 let startPlayer = document.querySelector(".tic__start-player");
 let playerMark = "o";
+
+let secondPlayerMark = "";
 let xMark = document.querySelector(".win-x-res");
 let oMark = document.querySelector(".win-o-res");
 
@@ -94,6 +96,13 @@ startBtns.forEach((btn) => {
     });
 
     playerMark = btn.getAttribute("data-mark");
+
+    if (playerMark === "x") {
+      secondPlayerMark = "o";
+    }
+    if (playerMark === "o") {
+      secondPlayerMark = "x";
+    }
 
     // Set background color of the clicked button to blue
     btn.style.background = "rgb(168, 191, 201)";
@@ -174,6 +183,7 @@ for (let i = 0; i < data.length; i++) {
             drawText.textContent = `${draw}`;
 
             winnerPopup.style.display = "block";
+            document.styleSheets[0].addRule("body::after", "display: block");
             winnerPopupText.innerHTML = "ROUND TIED";
             winnerPopupText.classList.remove("winner__popup-x");
             winnerPopupText.classList.remove("winner__popup-o");
@@ -199,6 +209,7 @@ for (let i = 0; i < data.length; i++) {
               winnerPopupText.classList.add("winner__popup-x");
               winnerPopupText.classList.remove("winner__popup-o");
               winnerPopupText.innerHTML = `<img src="./images/icon-x.svg" /> <span> TAKES THE ROUND</span>`;
+              document.styleSheets[0].addRule("body::after", "display: block");
             }
             if (winner === "o") {
               if (cpuBot !== true) {
@@ -211,10 +222,15 @@ for (let i = 0; i < data.length; i++) {
                 winnerPopupSubtitle.textContent = "YOU WON!";
                 winnerPopupText.classList.add("winner__popup-x");
                 winnerPopupText.classList.remove("winner__popup-o");
+                document.styleSheets[0].addRule(
+                  "body::after",
+                  "display: block"
+                );
               }
               oWins++;
               winnerO.textContent = oWins;
               winnerPopup.style.display = "block";
+              document.styleSheets[0].addRule("body::after", "display: block");
               winnerPopupText.classList.add("winner__popup-o");
               winnerPopupText.innerHTML = `<img src="./images/icon-o.svg" /><span> TAKES THE ROUND</span>`;
             }
@@ -403,25 +419,29 @@ function cpuMove() {
         if (winner) {
           gameEnded = true;
           if (winner === "draw") {
-            // В случае ничьей обновляем соответствующий счетчик и выводим сообщение о ничьей
-            draw++;
-            drawText.textContent = draw;
-            winnerPopupText.textContent = "ROUND TIED";
+            result.textContent = "";
+            drawText.textContent = `${draw}`;
+
+            winnerPopup.style.display = "block";
+
+            document.styleSheets[0].addRule("body::after", "display: block");
+            winnerPopupText.classList.remove("winner__popup-o");
+            winnerPopupText.classList.add("tie");
+            winnerPopupText.innerHTML = "ROUND TIED";
+
             winnerPopupSubtitle.textContent = "";
-            winnerPopup.classList.add("tie");
           } else {
-            // В случае победы одного из игроков обновляем соответствующий счетчик и выводим сообщение о победе
-            if (mark === "x") {
-              xWins++;
-              winnerPopupText.innerHTML = `<img src="./images/icon-${mark}.svg" /><span> TAKES THE ROUND</span>`;
-            } else {
-              oWins++;
-              winnerPopupText.innerHTML = `<img src="./images/icon-${mark}.svg" /><span> TAKES THE ROUND</span>`;
-            }
+            oWins++;
+            winnerO.textContent = oWins;
+
+            winnerPopup.style.display = "block";
+            winnerPopupText.classList.add("winner__popup-o");
+            winnerPopupText.classList.remove("winner__popup-x");
+            winnerPopupText.innerHTML = `<img src="./images/icon-o.svg" /><span> TAKES THE ROUND</span>`;
             winnerPopupSubtitle.textContent = "OH NO, YOU LOST…";
+
+            document.styleSheets[0].addRule("body::after", "display: block");
           }
-          // Отображаем попап с результатом раунда
-          winnerPopup.style.display = "block";
         }
       }
     }
@@ -436,46 +456,166 @@ function cpuMove() {
             }
           }
         }
+        for (let i = 0; i < data.length; i++) {
+          for (let j = 0; j < data[i].length; j++) {
+            // Проверка горизонтальных линий
+            if (
+              data[i][0] === "o" &&
+              data[i][1] === "o" &&
+              data[i][2] === null
+            ) {
+              data[i][2] = "x";
+              updateCell(i, 2, "x");
+              return;
+            }
+            if (
+              data[i][0] === "o" &&
+              data[i][2] === "o" &&
+              data[i][1] === null
+            ) {
+              data[i][1] = "x";
+              updateCell(i, 1, "x");
+              return;
+            }
+            if (
+              data[i][1] === "o" &&
+              data[i][2] === "o" &&
+              data[i][0] === null
+            ) {
+              data[i][0] = "x";
+              updateCell(i, 0, "x");
+              return;
+            }
 
-        // Если есть пустые ячейки, выбираем случайную и устанавливаем в нее "x"
-        if (emptyCells.length > 0) {
-          cpuBot = true;
-          const randomIndex = Math.floor(Math.random() * emptyCells.length);
-          const randomCell = emptyCells[randomIndex];
+            // Проверка вертикальных линий
+            if (
+              data[0][j] === "o" &&
+              data[1][j] === "o" &&
+              data[2][j] === null
+            ) {
+              data[2][j] = "x";
+              updateCell(2, j, "x");
+              return;
+            }
+            if (
+              data[0][j] === "o" &&
+              data[2][j] === "o" &&
+              data[1][j] === null
+            ) {
+              data[1][j] = "x";
+              updateCell(1, j, "x");
+              return;
+            }
+            if (
+              data[1][j] === "o" &&
+              data[2][j] === "o" &&
+              data[0][j] === null
+            ) {
+              data[0][j] = "x";
+              updateCell(0, j, "x");
+              return;
+            }
 
-          const { row, column } = randomCell;
-
-          data[row][column] = "x";
-          const cellElement = document.querySelector(`.cell-${row}-${column}`);
-          x++;
-          // Устанавливаем текстовое содержимое ячейки на игровом поле
-          cellElement.innerHTML = `<img src="./images/icon-x.svg" />`;
-          cellElement.classList.add("x");
-
-          const winner = checkForWinner();
-          if (winner) {
-            gameEnded = true;
-            if (winner === "draw") {
-              result.textContent = "";
-              drawText.textContent = `${draw}`;
-
-              winnerPopup.style.display = "block";
-              winnerPopupText.classList.add("tie");
-              winnerPopupText.innerHTML = "ROUND TIED";
-
-              winnerPopupSubtitle.textContent = "";
-            } else {
-              xWins++;
-              winnerX.textContent = xWins;
-              winnerPopup.style.display = "block";
-              winnerPopupText.classList.add("winner__popup-x");
-              winnerPopupText.classList.remove("winner__popup-o");
-              winnerPopupText.innerHTML = `<img src="./images/icon-x.svg" /><span> TAKES THE ROUND</span>`;
-              winnerPopupSubtitle.textContent = "OH NO, YOU LOST…";
+            // Проверка диагоналей
+            if (
+              data[0][0] === "o" &&
+              data[1][1] === "o" &&
+              data[2][2] === null
+            ) {
+              data[2][2] = "x";
+              updateCell(2, 2, "x");
+              return;
+            }
+            if (
+              data[0][0] === "o" &&
+              data[2][2] === "o" &&
+              data[1][1] === null
+            ) {
+              data[1][1] = "x";
+              updateCell(1, 1, "x");
+              return;
+            }
+            if (
+              data[1][1] === "o" &&
+              data[2][2] === "o" &&
+              data[0][0] === null
+            ) {
+              data[0][0] = "x";
+              updateCell(0, 0, "x");
+              return;
+            }
+            if (
+              data[0][2] === "o" &&
+              data[1][1] === "o" &&
+              data[2][0] === null
+            ) {
+              data[2][0] = "x";
+              updateCell(2, 0, "x");
+              return;
+            }
+            if (
+              data[0][2] === "o" &&
+              data[2][0] === "o" &&
+              data[1][1] === null
+            ) {
+              data[1][1] = "x";
+              updateCell(1, 1, "x");
+              return;
+            }
+            if (
+              data[1][1] === "o" &&
+              data[2][0] === "o" &&
+              data[0][2] === null
+            ) {
+              data[0][2] = "x";
+              updateCell(0, 2, "x");
+              return;
             }
           }
-        } else {
-          console.log("No empty cells available.");
+        }
+
+        // Если нет угрозы, выбираем случайную пустую ячейку
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        const randomCell = emptyCells[randomIndex];
+        const { row, column } = randomCell;
+        data[row][column] = "x";
+        updateCell(row, column, "x");
+      }
+
+      function updateCell(row, column, mark) {
+        const cellElement = document.querySelector(`.cell-${row}-${column}`);
+        cellElement.innerHTML = `<img src="./images/icon-x.svg" />`;
+        cellElement.classList.add(mark);
+        // Увеличиваем количество ходов для 'o'
+        x++;
+
+        const winner = checkForWinner();
+        if (winner) {
+          gameEnded = true;
+          if (winner === "draw") {
+            result.textContent = "";
+            drawText.textContent = `${draw}`;
+
+            winnerPopup.style.display = "block";
+
+            document.styleSheets[0].addRule("body::after", "display: block");
+
+            winnerPopupText.classList.remove("winner__popup-x");
+            winnerPopupText.classList.add("tie");
+            winnerPopupText.innerHTML = "ROUND TIED";
+
+            winnerPopupSubtitle.textContent = "";
+          } else {
+            xWins++;
+            winnerX.textContent = xWins;
+            winnerPopup.style.display = "block";
+            winnerPopupText.classList.add("winner__popup-x");
+            winnerPopupText.classList.remove("winner__popup-o");
+            winnerPopupText.innerHTML = `<img src="./images/icon-x.svg" /><span> TAKES THE ROUND</span>`;
+            winnerPopupSubtitle.textContent = "OH NO, YOU LOST…";
+
+            document.styleSheets[0].addRule("body::after", "display: block");
+          }
         }
       }
     }
@@ -501,12 +641,13 @@ let reset = document.querySelector(".reset");
 let restartConfirm = document.querySelector(".restart__btn-yes");
 let restartCancel = document.querySelector(".restart__btn-cancel");
 let restartPopup = document.querySelector(".restart__popup");
-
+let quit = document.querySelector(".winner__popup-quit");
 restartCancel.addEventListener("click", () => {
   restartPopup.style.display = "none";
+  document.styleSheets[0].addRule("body::after", "display: none");
 });
 
-restartConfirm.addEventListener("click", () => {
+quit.addEventListener("click", () => {
   restartPopup.style.display = "none";
   xWins = 0;
   winnerX.textContent = xWins;
@@ -518,14 +659,34 @@ restartConfirm.addEventListener("click", () => {
   startPopup.style.display = "flex";
   playerMark = "";
   cpuBot = false;
+  document.styleSheets[0].addRule("body::after", "display: none");
+  resetGame();
+});
+
+restartConfirm.addEventListener("click", () => {
+  restartPopup.style.display = "none";
+  document.styleSheets[0].addRule("body::after", "display: none");
+  xWins = 0;
+  winnerX.textContent = xWins;
+  oWins = 0;
+  winnerO.textContent = oWins;
+  draw = 0;
+  drawText.textContent = `${draw}`;
+  gameScreen.style.display = "none";
+  startPopup.style.display = "flex";
+
+  playerMark = "";
+  cpuBot = false;
   resetGame();
 });
 
 reset.addEventListener("click", () => {
   restartPopup.style.display = "block";
+  document.styleSheets[0].addRule("body::after", "display: block");
 });
 
 nextRound.addEventListener("click", () => {
+  document.styleSheets[0].addRule("body::after", "display: none");
   resetGame();
 
   if (cpuBot === true) {
@@ -574,3 +735,41 @@ startPlayer.addEventListener("click", () => {
     oMark.textContent = "O (2 PLAYER)";
   }
 });
+
+function toggleActive(button) {
+  const activeButton = document.querySelector(".button.active");
+  if (activeButton) {
+    gsap.to(activeButton, {
+      duration: 0.5,
+      x: 100,
+      opacity: 0,
+      onComplete: () => {
+        activeButton.classList.remove("active");
+        button.classList.add("active");
+        gsap.from(button, { duration: 0.5, x: -100, opacity: 0 });
+      },
+    });
+  } else {
+    button.classList.add("active");
+    gsap.from(button, { duration: 0.5, x: -100, opacity: 0 });
+  }
+}
+
+function toggleActiveX(button) {
+  const activeButton = document.querySelector(".button.active");
+  if (activeButton) {
+    gsap.to(activeButton, {
+      duration: 0.5,
+      x: -100,
+      opacity: 0,
+      onComplete: () => {
+        activeButton.classList.remove("active");
+        button.classList.add("active");
+        gsap.from(button, { duration: 0.5, x: 100, opacity: 0 });
+      },
+    });
+  } else {
+    button.classList.add("active");
+    gsap.from(button, { duration: 0.5, x: 100, opacity: 0 });
+  }
+}

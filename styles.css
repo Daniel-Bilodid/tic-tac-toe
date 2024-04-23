@@ -26,6 +26,12 @@ body {
   margin-left: 20px;
   cursor: pointer;
   padding-left: 38px;
+  box-shadow: 0 9px rgb(16, 33, 42);
+}
+
+.cell:active {
+  box-shadow: 0 5px rgb(16, 33, 42);
+  transform: translateY(4px);
 }
 
 .o img {
@@ -54,6 +60,11 @@ table {
   background: rgb(168, 191, 201);
   border: 0;
   cursor: pointer;
+}
+
+.reset:active {
+  box-shadow: 0 5px rgb(107, 137, 151);
+  transform: translateY(4px);
 }
 
 .x-img {
@@ -95,6 +106,7 @@ table {
   width: 459px;
   margin: 0 auto;
   display: flex;
+  margin-top: 19px;
 }
 .ties {
   width: 140px;
@@ -167,16 +179,28 @@ table {
 
   margin-top: 13px;
 }
+body::after {
+  content: "";
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
 
 .winner__popup {
   display: none;
   position: absolute;
   width: 100%;
   height: 266px;
-
-  top: 330px;
-  /* Semi Dark Navy */
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   background: rgb(31, 54, 65);
+  z-index: 1000;
 }
 .winner__popup-wrapper {
   display: flex;
@@ -233,6 +257,11 @@ table {
   border: none;
 }
 
+.winner__popup-quit:active {
+  box-shadow: 0 5px rgb(107, 137, 151);
+  transform: translateY(4px);
+}
+
 .winner__popup-quit span {
 }
 
@@ -255,6 +284,11 @@ table {
   cursor: pointer;
   border: none;
   margin-left: 16px;
+}
+
+.winner__popup-next:active {
+  box-shadow: 0 5px rgb(204, 139, 19);
+  transform: translateY(4px);
 }
 
 .winner__popup-btns {
@@ -332,6 +366,8 @@ table {
   top: 330px;
   /* Semi Dark Navy */
   background: rgb(31, 54, 65);
+
+  z-index: 1000;
 }
 
 .restart__popup-wrapper {
@@ -380,6 +416,11 @@ table {
   cursor: pointer;
 }
 
+.restart__btn-cancel:active {
+  box-shadow: 0 5px rgb(107, 137, 151);
+  transform: translateY(4px);
+}
+
 .restart__btn-yes {
   width: 151px;
   height: 52px;
@@ -399,6 +440,11 @@ table {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+}
+
+.restart__btn-yes:active {
+  box-shadow: 0 5px rgb(204, 139, 19);
+  transform: translateY(4px);
 }
 
 .tic__tac {
@@ -512,6 +558,11 @@ table {
   cursor: pointer;
 }
 
+.tic__start-cpu:active {
+  box-shadow: 0 5px rgb(204, 139, 19);
+  transform: translateY(4px);
+}
+
 .tic__start-player {
   border-radius: 15px;
 
@@ -533,6 +584,11 @@ table {
   cursor: pointer;
 }
 
+.tic__start-player:active {
+  box-shadow: 0 5px rgb(17, 140, 135);
+  transform: translateY(4px);
+}
+
 .tie {
   color: rgb(168, 191, 201);
 }
@@ -543,4 +599,152 @@ table {
 
 .winner__popup-o {
   color: rgb(242, 177, 55);
+}
+
+@media (max-width: 550px) {
+  .tic {
+    width: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tic__player {
+    width: 327px;
+    height: 205px;
+  }
+  .tic__player-btn {
+    width: 279px;
+    height: 72px;
+  }
+
+  .tic__player-x {
+    width: 131.99px;
+    height: 54px;
+  }
+
+  .tic__player-o {
+    width: 131.99px;
+    height: 54px;
+  }
+
+  .tic__start-cpu {
+    width: 327px;
+    height: 56px;
+    font-size: 16px;
+  }
+  .tic__start-player {
+    width: 327px;
+    height: 56px;
+    font-size: 16px;
+  }
+
+  .tic__player-reminder {
+    font-size: 14px;
+  }
+
+  .tic__player-mark {
+    font-size: 16px;
+  }
+
+  .tic__buttons {
+    margin-top: 28px;
+  }
+
+  .cell {
+    width: 96px;
+    height: 84px;
+    padding: 0;
+  }
+
+  table {
+    margin-top: 64px;
+    width: 328px;
+  }
+
+  .cell img {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -20px;
+  }
+
+  .o-hovered {
+    background-image: none;
+  }
+  .x-hovered {
+    background-image: none;
+  }
+
+  .win-X {
+    width: 96px;
+    height: 64px;
+  }
+  .ties {
+    width: 96px;
+    height: 64px;
+  }
+  .win-O {
+    width: 96px;
+    height: 64px;
+  }
+  .results {
+    width: 328px;
+    margin: 0 auto;
+  }
+  .turn {
+    width: 96px;
+    height: 40px;
+    font-size: 14px;
+    margin-right: 74px;
+  }
+
+  .o-img {
+    margin-right: 46px;
+  }
+  .restart__question {
+    font-size: 24px;
+  }
+  .restart__popup {
+    top: 269px;
+  }
+  .winner__popup-x {
+    font-size: 24px;
+  }
+  .winner__popup-x img {
+    width: 28px;
+    height: 28px;
+    margin-top: 18px;
+  }
+
+  .winner__popup-o {
+    font-size: 24px;
+  }
+  .winner__popup-o img {
+    width: 28px;
+    height: 28px;
+    margin-top: 18px;
+  }
+
+  .winner__popup {
+    top: 400px;
+  }
+
+  .winner__popup-text {
+    font-size: 14px;
+  }
+  .tic__start-icons {
+    margin-left: 58px;
+  }
+
+  .winner__x {
+    font-size: 20px;
+  }
+
+  .winner__o {
+    font-size: 20px;
+  }
+  .draw {
+    font-size: 20px;
+  }
 }
