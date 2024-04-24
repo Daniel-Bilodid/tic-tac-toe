@@ -643,12 +643,19 @@ let restartCancel = document.querySelector(".restart__btn-cancel");
 let restartPopup = document.querySelector(".restart__popup");
 let quit = document.querySelector(".winner__popup-quit");
 restartCancel.addEventListener("click", () => {
-  restartPopup.style.display = "none";
+  restartPopup.style.opacity = 0;
+  restartPopup.style.zIndex = -1;
+
+  restartPopup.classList.remove("animate__popup");
+
   document.styleSheets[0].addRule("body::after", "display: none");
 });
 
 quit.addEventListener("click", () => {
-  restartPopup.style.display = "none";
+  restartPopup.style.opacity = 0;
+  restartPopup.style.zIndex = -1;
+
+  restartPopup.classList.remove("animate__popup");
   xWins = 0;
   winnerX.textContent = xWins;
   oWins = 0;
@@ -664,7 +671,10 @@ quit.addEventListener("click", () => {
 });
 
 restartConfirm.addEventListener("click", () => {
-  restartPopup.style.display = "none";
+  restartPopup.style.opacity = 0;
+  restartPopup.style.zIndex = -1;
+
+  restartPopup.classList.remove("animate__popup");
   document.styleSheets[0].addRule("body::after", "display: none");
   xWins = 0;
   winnerX.textContent = xWins;
@@ -681,7 +691,11 @@ restartConfirm.addEventListener("click", () => {
 });
 
 reset.addEventListener("click", () => {
-  restartPopup.style.display = "block";
+  restartPopup.style.opacity = 1;
+  restartPopup.style.zIndex = 1000;
+
+  restartPopup.classList.add("animate__popup");
+
   document.styleSheets[0].addRule("body::after", "display: block");
 });
 
