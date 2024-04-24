@@ -192,7 +192,7 @@ body::after {
 }
 
 .winner__popup {
-  display: none;
+  opacity: 0;
   position: absolute;
   width: 100%;
   height: 266px;
@@ -200,7 +200,7 @@ body::after {
   left: 0;
   transform: translateY(-50%);
   background: rgb(31, 54, 65);
-  z-index: 1000;
+  z-index: -1;
 }
 .winner__popup-wrapper {
   display: flex;

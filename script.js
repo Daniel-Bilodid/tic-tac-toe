@@ -182,7 +182,11 @@ for (let i = 0; i < data.length; i++) {
             result.textContent = "";
             drawText.textContent = `${draw}`;
 
-            winnerPopup.style.display = "block";
+            winnerPopup.style.opacity = 1;
+            winnerPopup.style.zIndex = 1000;
+
+            winnerPopup.classList.add("animate__popup");
+
             document.styleSheets[0].addRule("body::after", "display: block");
             winnerPopupText.innerHTML = "ROUND TIED";
             winnerPopupText.classList.remove("winner__popup-x");
@@ -205,7 +209,10 @@ for (let i = 0; i < data.length; i++) {
 
               xWins++;
               winnerX.textContent = xWins;
-              winnerPopup.style.display = "block";
+              winnerPopup.style.opacity = 1;
+              winnerPopup.style.zIndex = 1000;
+
+              winnerPopup.classList.add("animate__popup");
               winnerPopupText.classList.add("winner__popup-x");
               winnerPopupText.classList.remove("winner__popup-o");
               winnerPopupText.innerHTML = `<img src="./images/icon-x.svg" /> <span> TAKES THE ROUND</span>`;
@@ -229,7 +236,10 @@ for (let i = 0; i < data.length; i++) {
               }
               oWins++;
               winnerO.textContent = oWins;
-              winnerPopup.style.display = "block";
+              winnerPopup.style.opacity = 1;
+              winnerPopup.style.zIndex = 1000;
+
+              winnerPopup.classList.add("animate__popup");
               document.styleSheets[0].addRule("body::after", "display: block");
               winnerPopupText.classList.add("winner__popup-o");
               winnerPopupText.innerHTML = `<img src="./images/icon-o.svg" /><span> TAKES THE ROUND</span>`;
@@ -422,7 +432,10 @@ function cpuMove() {
             result.textContent = "";
             drawText.textContent = `${draw}`;
 
-            winnerPopup.style.display = "block";
+            winnerPopup.style.opacity = 1;
+            winnerPopup.style.zIndex = 1000;
+
+            winnerPopup.classList.add("animate__popup");
 
             document.styleSheets[0].addRule("body::after", "display: block");
             winnerPopupText.classList.remove("winner__popup-o");
@@ -434,7 +447,10 @@ function cpuMove() {
             oWins++;
             winnerO.textContent = oWins;
 
-            winnerPopup.style.display = "block";
+            winnerPopup.style.opacity = 1;
+            winnerPopup.style.zIndex = 1000;
+
+            winnerPopup.classList.add("animate__popup");
             winnerPopupText.classList.add("winner__popup-o");
             winnerPopupText.classList.remove("winner__popup-x");
             winnerPopupText.innerHTML = `<img src="./images/icon-o.svg" /><span> TAKES THE ROUND</span>`;
@@ -596,7 +612,10 @@ function cpuMove() {
             result.textContent = "";
             drawText.textContent = `${draw}`;
 
-            winnerPopup.style.display = "block";
+            winnerPopup.style.opacity = 1;
+            winnerPopup.style.zIndex = 1000;
+
+            winnerPopup.classList.add("animate__popup");
 
             document.styleSheets[0].addRule("body::after", "display: block");
 
@@ -608,7 +627,10 @@ function cpuMove() {
           } else {
             xWins++;
             winnerX.textContent = xWins;
-            winnerPopup.style.display = "block";
+            winnerPopup.style.opacity = 1;
+            winnerPopup.style.zIndex = 1000;
+
+            winnerPopup.classList.add("animate__popup");
             winnerPopupText.classList.add("winner__popup-x");
             winnerPopupText.classList.remove("winner__popup-o");
             winnerPopupText.innerHTML = `<img src="./images/icon-x.svg" /><span> TAKES THE ROUND</span>`;
@@ -731,7 +753,10 @@ function resetGame() {
 
   turn.textContent = "X TURN";
 
-  winnerPopup.style.display = "none";
+  winnerPopup.style.opacity = 0;
+  winnerPopup.style.zIndex = -1;
+
+  winnerPopup.classList.remove("animate__popup");
 }
 
 startPlayer.addEventListener("click", () => {
