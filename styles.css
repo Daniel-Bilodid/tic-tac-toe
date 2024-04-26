@@ -16,7 +16,7 @@ body {
 
 .cell {
   width: 102px;
-  height: 140px;
+  height: 133px;
   border-radius: 15px;
 
   box-shadow: inset 0px -8px 0px 0px rgb(16, 33, 42);
@@ -106,7 +106,7 @@ table {
   width: 459px;
   margin: 0 auto;
   display: flex;
-  margin-top: 19px;
+  margin-top: 0px;
 }
 .ties {
   width: 140px;
