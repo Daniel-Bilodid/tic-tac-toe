@@ -762,3 +762,11 @@ body::after {
 .animate__popup {
   animation: fadeIn 1s ease forwards;
 }
+
+.tic__start {
+  display: none;
+}
+
+.tic__tac {
+  display: block;
+}
