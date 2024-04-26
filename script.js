@@ -72,6 +72,8 @@ function checkForWinner() {
 const table = document.createElement("table");
 let turn = document.querySelector(".turn");
 
+let togglePlayers = document.querySelector(".toggle__players");
+
 let winnerX = document.querySelector(".winner__x");
 let winnerO = document.querySelector(".winner__o");
 let drawText = document.querySelector(".draw");

@@ -602,6 +602,12 @@ body::after {
   color: rgb(242, 177, 55);
 }
 
+.cell img {
+  position: absolute;
+
+  margin-top: -30px;
+}
+
 @media (max-width: 550px) {
   .tic {
     width: 328px;
@@ -769,4 +775,6 @@ body::after {
 
 .tic__tac {
   display: block;
+}
+.turn {
 }
